@@ -1,0 +1,4 @@
+_id,advertiser_id,global_entity_id,start_date,end_date,timezone
+i1,a1,PY_GT,2023-01-11,2023-30-11,America
+i2,a2,TB_KW,2023-01-11,2023-30-11,Qatar
+i3,a3,FP_SG,2023-01-11,2023-30-11,Asia
