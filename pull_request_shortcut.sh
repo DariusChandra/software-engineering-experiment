@@ -1,4 +1,5 @@
-# copy this to your ~/.zshrc
+# copy this to your ~/.zshrc, this function enable you to pop up github pull request at browser. This script will compare current branch with remote branch
+# Example : type "pr master" to make PR of your local branch with remote master branch 
 pr() {
     # Check if a branch name argument is provided
     if [ "$#" -ne 1 ]; then
