@@ -1,3 +1,4 @@
+# copy this to your ~/.zshrc
 pr() {
     # Check if a branch name argument is provided
     if [ "$#" -ne 1 ]; then
