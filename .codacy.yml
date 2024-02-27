@@ -12,5 +12,3 @@ exclude_paths:
   - "**/**.yml"
   - "infrastructure/**"
   - "pkg/testcontainers/**"
-  - "services/adcredits/cmd/cron-worker/credit-events-publisher/main.go"
-  - "services/adcredits/cmd/cron-worker/notification-publisher/main.go"
