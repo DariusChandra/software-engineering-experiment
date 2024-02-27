@@ -1,8 +1,7 @@
 package main
 
 import (
-	"github.com/DariusChandra/software-engineering-experiment/metrics"
-	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
+	"fmt"
 	"time"
 )
 
@@ -20,27 +19,29 @@ var opts struct {
 }
 
 func main() {
-	// start datadog tracing
-	tracerOpts := getTracerOpts()
-	metrics.StartTracer(tracerOpts...)
-	defer metrics.StopTracer()
+	//// start datadog tracing
+	//tracerOpts := getTracerOpts()
+	//metrics.StartTracer(tracerOpts...)
+	//defer metrics.StopTracer()
+
+	fmt.Println("hello world")
 }
 
-func getTracerOpts() []tracer.StartOption {
-	tags := map[string]interface{}{
-		"dh_cc_id":         "100160131",
-		"dh_squad":         "adtech-advertiser",
-		"dh_platform":      "vendor-tech",
-		"dh_tribe":         "adtech",
-		"dh_slack_channel": "adtech-tech",
-	}
-
-	tracerOpts := metrics.TagsToOpts(tags)
-	tracerOpts = append(tracerOpts,
-		tracer.WithRuntimeMetrics(),
-		tracer.WithDogstatsdAddress("unix:///var/run/datadog/dsd.socket"),
-		tracer.WithLogStartup(false),
-	)
-
-	return tracerOpts
-}
+//func getTracerOpts() []tracer.StartOption {
+//	tags := map[string]interface{}{
+//		"dh_cc_id":         "100160131",
+//		"dh_squad":         "adtech-advertiser",
+//		"dh_platform":      "vendor-tech",
+//		"dh_tribe":         "adtech",
+//		"dh_slack_channel": "adtech-tech",
+//	}
+//
+//	tracerOpts := metrics.TagsToOpts(tags)
+//	tracerOpts = append(tracerOpts,
+//		tracer.WithRuntimeMetrics(),
+//		tracer.WithDogstatsdAddress("unix:///var/run/datadog/dsd.socket"),
+//		tracer.WithLogStartup(false),
+//	)
+//
+//	return tracerOpts
+//}
