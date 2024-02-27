@@ -7,7 +7,6 @@ exclude_paths:
   - "scripts/experiments/**"
   - "**/mocks/*.go"
   - "**/app/app.go"
-  - "**/main.go"
   - "scripts/mongo/**"
   - "**/**.yaml"
   - "**/**.yml"
