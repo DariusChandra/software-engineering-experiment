@@ -1,0 +1,16 @@
+---
+exclude_paths:
+  - "**_test.go"
+  - "README.md"
+  - "proto/**"
+  - "**/**.md"
+  - "scripts/experiments/**"
+  - "**/mocks/*.go"
+  - "**/app/app.go"
+  - "scripts/mongo/**"
+  - "**/**.yaml"
+  - "**/**.yml"
+  - "infrastructure/**"
+  - "pkg/testcontainers/**"
+  - "services/adcredits/cmd/cron-worker/credit-events-publisher/main.go"
+  - "services/adcredits/cmd/cron-worker/notification-publisher/main.go"

@@ -1,0 +1,1 @@
+https://lokalise.com/blog/go-internationalization-using-go-i18n/
