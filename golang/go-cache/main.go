@@ -15,7 +15,7 @@ func main() {
 
 	// Set the value of the key "foo" to "bar", with the default expiration time
 	c.Set("foo", "bar", cache.DefaultExpiration)
-
+	c.Set("codacy", "bar", cache.DefaultExpiration)
 	// Set the value of the key "baz" to 42, with no expiration time
 	// (the item won't be removed until it is re-set, or removed using
 	// c.Delete("baz")
