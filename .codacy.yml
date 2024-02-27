@@ -10,6 +10,5 @@ exclude_paths:
   - "scripts/mongo/**"
   - "**/**.yaml"
   - "**/**.yml"
-  - "**/main.go"
   - "infrastructure/**"
   - "pkg/testcontainers/**"
