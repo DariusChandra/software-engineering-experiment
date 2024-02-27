@@ -4,8 +4,6 @@ import (
 	"fmt"
 	experiment_coverage "github.com/DariusChandra/software-engineering-experiment/golang/experiment-coverage"
 	"github.com/patrickmn/go-cache"
-	"io"
-	"net/http"
 	"time"
 )
 
@@ -22,19 +20,8 @@ func main() {
 	// c.Delete("baz")
 	c.Set("baz", 42, cache.NoExpiration)
 
-	resp, err := http.Get("https://google.com")
-	if err != nil {
-		fmt.Println(err)
-		return
+	res, exist := c.Get("codacy")
+	if exist {
+		fmt.Println(res)
 	}
-	if resp.StatusCode != http.StatusOK {
-		return
-	}
-	bodyBytes, err := io.ReadAll(resp.Body)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	fmt.Println(string(bodyBytes))
 }
