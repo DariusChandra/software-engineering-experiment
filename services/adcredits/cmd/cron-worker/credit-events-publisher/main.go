@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/DariusChandra/software-engineering-experiment/math"
 	"github.com/DariusChandra/software-engineering-experiment/metrics"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 	"time"
@@ -27,6 +28,8 @@ func main() {
 	defer metrics.StopTracer()
 
 	fmt.Println("hello world")
+	a := math.Sum(1, 2)
+	fmt.Println(a)
 }
 
 func getTracerOpts() []tracer.StartOption {
