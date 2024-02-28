@@ -1,5 +1,6 @@
 ---
 exclude_paths:
+  - "**/main.go"
   - "**_test.go"
   - "README.md"
   - "proto/**"
