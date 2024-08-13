@@ -1,0 +1,26 @@
+[2024-07-15T08:16:28.025+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-07-15T08:16:28.034+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: user_processing.extract_user scheduled__2024-07-14T00:00:00+00:00 [queued]>
+[2024-07-15T08:16:28.037+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: user_processing.extract_user scheduled__2024-07-14T00:00:00+00:00 [queued]>
+[2024-07-15T08:16:28.038+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-07-15T08:16:28.045+0000] {taskinstance.py:2330} INFO - Executing <Task(SimpleHttpOperator): extract_user> on 2024-07-14 00:00:00+00:00
+[2024-07-15T08:16:28.049+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=712) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-07-15T08:16:28.050+0000] {standard_task_runner.py:63} INFO - Started process 718 to run task
+[2024-07-15T08:16:28.053+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'user_processing', 'extract_user', 'scheduled__2024-07-14T00:00:00+00:00', '--job-id', '27', '--raw', '--subdir', 'DAGS_FOLDER/user_processing.py', '--cfg-path', '/tmp/tmpao1a0tiy']
+[2024-07-15T08:16:28.054+0000] {standard_task_runner.py:91} INFO - Job 27: Subtask extract_user
+[2024-07-15T08:16:28.094+0000] {task_command.py:426} INFO - Running <TaskInstance: user_processing.extract_user scheduled__2024-07-14T00:00:00+00:00 [running]> on host 6e5e891f9a78
+[2024-07-15T08:16:28.186+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='user_processing' AIRFLOW_CTX_TASK_ID='extract_user' AIRFLOW_CTX_EXECUTION_DATE='2024-07-14T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-07-14T00:00:00+00:00'
+[2024-07-15T08:16:28.187+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-07-15T08:16:28.188+0000] {http.py:169} INFO - Calling HTTP method
+[2024-07-15T08:16:28.198+0000] {base.py:84} INFO - Using connection ID 'user_api' for task execution.
+[2024-07-15T08:16:28.207+0000] {base.py:84} INFO - Using connection ID 'user_api' for task execution.
+[2024-07-15T08:16:29.665+0000] {http.py:208} INFO - {"results":[{"gender":"male","name":{"title":"Mr","first":"Mason","last":"Chan"},"location":{"street":{"number":1180,"name":"Grand Marais Ave"},"city":"Odessa","state":"Northwest Territories","country":"Canada","postcode":"E2Z 0Z2","coordinates":{"latitude":"-71.8178","longitude":"-2.9546"},"timezone":{"offset":"+11:00","description":"Magadan, Solomon Islands, New Caledonia"}},"email":"mason.chan@example.com","login":{"uuid":"92f18a64-ffdd-4d2e-a004-cebd1125e3f8","username":"angryfish827","password":"12344321","salt":"90Z11j56","md5":"de42ab34bfff3fc8ca553eb7d4c17f4e","sha1":"ac165ffa4519fbe5b13574a31e26cef911a24475","sha256":"3ad89ad2efb6621016a52fe2b2e842cb69c6a277247e34ae256c889545c28cb4"},"dob":{"date":"1996-12-24T07:35:51.675Z","age":27},"registered":{"date":"2016-09-11T12:50:18.158Z","age":7},"phone":"C11 I82-9577","cell":"R62 B40-3477","id":{"name":"SIN","value":"421399080"},"picture":{"large":"https://randomuser.me/api/portraits/men/86.jpg","medium":"https://randomuser.me/api/portraits/med/men/86.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/86.jpg"},"nat":"CA"}],"info":{"seed":"2d8ff52ec1b9f355","results":1,"page":1,"version":"1.4"}}
+[2024-07-15T08:16:29.670+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-07-15T08:16:29.709+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=user_processing, task_id=extract_user, run_id=scheduled__2024-07-14T00:00:00+00:00, execution_date=20240714T000000, start_date=20240715T081628, end_date=20240715T081629
+[2024-07-15T08:16:29.736+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-07-15T08:16:29.743+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py:1297: AirflowProviderDeprecationWarning: Call to deprecated class SimpleHttpOperator. (Class `SimpleHttpOperator` is deprecated and will be removed in a future release. Please use `HttpOperator` instead.)
+  result = cls.__new__(cls)
+
+[2024-07-15T08:16:29.750+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-07-15T08:16:29.752+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

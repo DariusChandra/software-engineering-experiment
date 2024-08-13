@@ -1,0 +1,185 @@
+@startuml
+title "Credit created"
+
+actor HoS
+actor Advertiser
+
+participant "Advertiser service" as AS
+participant "Campaign service" as CS
+queue "Credit Available" as ACA
+participant "Billing service" as BS
+participant "Notification Service" as NS
+database "Billing Db" as BD
+
+HoS -> AS: Add Credit(Vendor)
+AS -> CS: FetchCampaign(Vendor)
+CS --> AS: listCampaigns
+
+AS -> AS: Generate Event message
+AS -> ACA: Push "Credit Available" Event
+AS -> Advertiser: Credit received
+NS -> ACA: Receive Event message
+NS --> Advertiser: Notify advertiser
+BS -> ACA: Receive Event message
+BS -> BD: Credit data persist
+@enduml
+
+
+
+
+
+@startuml
+
+title "Campaign created"
+
+actor Advertisers
+
+participant "Advertiser service" as AS
+participant "Campaign service" as CS
+queue "Credit Available" as ACA
+participant "Billing service" as BS
+database "Billing Db" as BD
+
+Advertisers -> CS: Create Campaign(Vendor)
+CS -> AS: updateCampaign(Vendor)
+
+AS -> AS: Generate Event message
+note left
+  Updated Campaign info to
+  Credit Available event message
+end note
+AS -> ACA: Push "Credit Available" Event
+BS -> ACA: Receive Event message
+BS -> BD: Credit data persist
+
+@enduml
+
+
+
+
+
+@startuml
+title "Billable event"
+
+actor Advertisers
+
+participant "Tracking service" as TS
+participant "Billing service" as BS
+database    "Billing DB"    as BDB
+queue "Billing Pub/Sub topic" as BPS
+participant "Entity" as EN
+
+Advertisers -> TS: clickEvent
+TS -> BS: billableEvent(Vendor, Campaign)
+
+BS -> BS: Deduct Credit if available for campaign and Advertiser
+
+BS -> BDB: Update billable event and credit data consumed
+
+BS -> BPS: BillingUpdate()
+
+EN -> BS: billingAPI()
+BS --> EN: return(billingInvoice)
+
+note left
+  Billing Invoice consist of
+  Credit consumption for the
+  campaign and pediod
+end note
+
+
+@enduml
+
+
+@startuml
+title "Advertiser Credit Comnsumption Data in Vendor portal"
+
+actor Users
+
+participant "Tracking service" as TS
+participant "Billing service" as BS
+
+
+queue "Credit Spent" as ASA
+database    "Big Query"    as GBQ
+
+participant "Reporting service" as RS
+
+participant "Vendor BFF" as BFF
+participant "Vendor portal" as VP
+actor Advertisers
+
+
+
+Users -> TS: clickEvent
+TS -> BS: billableEvent(Vendor, Campaign)
+
+BS -> BS: Generate Event message
+note left
+  Produce event with budget and Credit Spent
+  based on Credit available
+end note
+BS -> ASA: Push "Credit Spent" Event
+
+ASA -> GBQ: Data Pipeline
+
+note left
+Curated, aggregated data prepared
+by the Data engineering
+end note
+
+GBQ -> RS: DAGs
+
+Advertisers -> VP: Naviagate to Reporting page
+VP -> BFF: request: Credits Consumption Data
+BFF -> RS: query: Credits Consumption Data
+RS --> BFF: response: Credits Consumption Data
+BFF --> VP: response: Credit Consumption Data
+@enduml
+
+
+@startuml
+title "Credit Comnsumption Data in ACC"
+
+actor Users
+
+participant "Tracking service" as TS
+participant "Billing service" as BS
+
+
+queue "Credit Spent" as ASA
+database    "Big Query"    as GBQ
+
+participant "Reporting service" as RS
+
+participant "ACC BFF" as BFF
+participant "ACC" as ACC
+actor Agent
+
+
+
+Users -> TS: clickEvent
+TS -> BS: billableEvent(Vendor, Campaign)
+
+BS -> BS: Generate Event message
+note left
+  Produce event with budget and Credit Spent
+  based on Credit available
+end note
+BS -> ASA: Push "Credit Spent" Event
+
+ASA -> GBQ: Data Pipeline
+
+note left
+Curated, aggregated data prepared
+by the Data engineering
+end note
+
+GBQ -> RS: DAGs
+
+Agent -> ACC: Naviagate to Reporting page
+ACC -> BFF: request: Credits Consumption Data
+BFF -> RS: query: Credits Consumption Data
+RS --> BFF: response: Credits Consumption Data
+BFF --> ACC: response: Credit Consumption Data
+@enduml

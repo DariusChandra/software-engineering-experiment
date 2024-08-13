@@ -1,0 +1,1 @@
+[2024-07-16T10:19:38.515+0000] {scheduler_job_runner.py:769} ERROR - Executor reports task instance <TaskInstance: xcom_dag.t1 manual__2024-07-16T10:19:37.975360+00:00 [queued]> finished (failed) although the task says it's queued. (Info: None) Was the task killed externally?
